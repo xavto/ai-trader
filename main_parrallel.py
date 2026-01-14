@@ -1,13 +1,13 @@
 import os
 import sys
 import asyncio
-from datetime import datetime
 import json
 from pathlib import Path
 from dotenv import load_dotenv
 import argparse
 load_dotenv()
 
+from utils.date_utils import parse_date
 # Import tools and prompts
 from tools.general_tools import write_config_value
 from prompts.agent_prompt import all_nasdaq_100_symbols
@@ -218,17 +218,13 @@ async def main(config_path=None, only_signature: str | None = None):
         print(f"⚠️  Using environment variable to override END_DATE: {END_DATE}")
 
     # Validate date range
-    # Support both YYYY-MM-DD and YYYY-MM-DD HH:MM:SS formats
-    if ' ' in INIT_DATE:
-        INIT_DATE_obj = datetime.strptime(INIT_DATE, "%Y-%m-%d %H:%M:%S")
-    else:
-        INIT_DATE_obj = datetime.strptime(INIT_DATE, "%Y-%m-%d")
-    
-    if ' ' in END_DATE:
-        END_DATE_obj = datetime.strptime(END_DATE, "%Y-%m-%d %H:%M:%S")
-    else:
-        END_DATE_obj = datetime.strptime(END_DATE, "%Y-%m-%d")
-    
+    try:
+        INIT_DATE_obj = parse_date(INIT_DATE)
+        END_DATE_obj = parse_date(END_DATE)
+    except ValueError as e:
+        print(f"❌ Error while parsing dates: {e}")
+        exit(1)
+
     if INIT_DATE_obj > END_DATE_obj:
         print("❌ INIT_DATE is greater than END_DATE")
         exit(1)
@@ -276,4 +272,3 @@ if __name__ == "__main__":
         print(f"🎯 Filtering to single signature: {args.signature}")
 
     asyncio.run(main(args.config_path, args.signature))
-
