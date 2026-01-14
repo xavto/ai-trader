@@ -12,6 +12,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN cp -a /app/data /app/_data_seed
+
 ENV PYTHONUNBUFFERED=1
 
 CMD ["bash", "start.sh"]
