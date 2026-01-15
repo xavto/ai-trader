@@ -3,12 +3,12 @@
   "market": "cn",
   "date_range": {
     "init_date": "2025-10-01",
-    "end_date": "2025-10-29"
+    "end_date": "2026-01-12"
   },
   "models": [
     {
       "name": "claude-3.7-sonnet",
-      "basemodel": "claude-3-7-sonnet-20250219", 
+      "basemodel": "claude-3-7-sonnet-20250219",
       "signature": "claude-3.7-sonnet",
       "enabled": false
     },
@@ -59,4 +59,3 @@
     "log_path": "./data/agent_data_astock"
   }
 }
-

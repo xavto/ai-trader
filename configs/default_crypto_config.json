@@ -3,12 +3,12 @@
   "market": "crypto",
   "date_range": {
     "init_date": "2025-11-01",
-    "end_date": "2025-11-15"
+    "end_date": "2026-01-12"
   },
   "models": [
     {
       "name": "claude-3.7-sonnet",
-      "basemodel": "anthropic/claude-3.7-sonnet", 
+      "basemodel": "anthropic/claude-3.7-sonnet",
       "signature": "claude-3.7-sonnet",
       "enabled": false
     },

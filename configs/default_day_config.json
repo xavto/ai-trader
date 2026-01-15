@@ -2,16 +2,16 @@
   "agent_type": "BaseAgent",
   "date_range": {
     "init_date": "2025-10-01",
-    "end_date": "2025-10-21"
+    "end_date": "2026-01-12"
   },
   "models": [
     {
       "name": "claude-3.7-sonnet",
-      "basemodel": "anthropic/claude-3.7-sonnet", 
+      "basemodel": "anthropic/claude-3.7-sonnet",
       "signature": "claude-3.7-sonnet",
       "enabled": false,
       "openai_base_url": "Optional: YOUR_OPENAI_BASE_URL,you can write them in .env file",
-      "openai_api_key": "Optional: YOUR_OPENAI_API_KEY,you can write them in .env file" 
+      "openai_api_key": "Optional: YOUR_OPENAI_API_KEY,you can write them in .env file"
     },
     {
       "name": "deepseek-chat-v3.1",
@@ -48,4 +48,3 @@
     "log_path": "./data/agent_data"
   }
 }
-
