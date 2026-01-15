@@ -131,6 +131,13 @@ async def _run_model_in_current_process(AgentClass, model_config, INIT_DATE, END
     initial_cash = agent_config.get("initial_cash", 10000.0)
 
     log_path = log_config.get("log_path", "./data/agent_data")
+    log_path_path = Path(log_path)
+    if not log_path_path.is_absolute():
+        log_path_path = project_root / log_path_path
+    position_file = log_path_path / signature / "position" / "position.jsonl"
+    if (os.getenv("INIT_DATE") or os.getenv("END_DATE")) and position_file.exists():
+        print(f"🔄 INIT_DATE/END_DATE override set, removing existing position file: {position_file}")
+        position_file.unlink()
 
     try:
         agent = AgentClass(
