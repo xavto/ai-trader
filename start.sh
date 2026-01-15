@@ -32,7 +32,7 @@ export ALPHAADVANTAGE_API_KEY="${ALPHAADVANTAGE_API_KEY:-${ALPHAVANTAGE_API_KEY:
 # Optional switches
 # ------------------------------------------------------------
 # FORCE_REFRESH_DATA=1 -> delete merged.jsonl and rebuild it (costly, but fixes old datasets)
-# RESET_AGENT_DATA=1   -> delete previous agent outputs (agent_data/)
+# RESET_AGENT_DATA=1   -> delete previous agent position files (agent_data*/**/position.jsonl)
 export FORCE_REFRESH_DATA="${FORCE_REFRESH_DATA:-0}"
 export RESET_AGENT_DATA="${RESET_AGENT_DATA:-0}"
 
@@ -125,8 +125,8 @@ fi
 # 2) Optional: reset agent outputs
 # ------------------------------------------------------------
 if [[ "${RESET_AGENT_DATA}" == "1" ]]; then
-  echo "[INIT] RESET_AGENT_DATA=1 -> clearing previous agent outputs"
-  rm -rf "${DATA_DIR}/agent_data" || true
+  echo "[INIT] RESET_AGENT_DATA=1 -> removing existing position.jsonl files under ${DATA_DIR}/agent_data*"
+  find "${DATA_DIR}" -path "${DATA_DIR}/agent_data*" -type f -name "position.jsonl" -delete || true
 fi
 
 # ------------------------------------------------------------
