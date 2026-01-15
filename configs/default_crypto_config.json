@@ -32,7 +32,7 @@
     },
     {
       "name": "gpt-5",
-      "basemodel": "openai/gpt-5",
+      "basemodel": "gpt-5",
       "signature": "gpt-5",
       "enabled": true
     }
